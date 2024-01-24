@@ -81,5 +81,30 @@ public class OgrenciController : Controller
     }
 
 
+    public async Task<IActionResult> Delete(int? id)
+    {
+        if(id == null){return NotFound();}
+
+        var tlb = await _context.Ogrenciler.FindAsync(id);
+
+        if(tlb == null){return NotFound();}
+
+        return View(tlb);
+    }
+
+
+    [HttpPost]
+    public async Task<IActionResult> Delete([FromForm]int id)
+    {
+        var tlb = await _context.Ogrenciler.FindAsync(id);
+
+        if(tlb == null){ return NotFound();}
+
+        _context.Remove(tlb);
+        await _context.SaveChangesAsync();
+        return RedirectToAction("Index");
+    }
+
+
 
 }
