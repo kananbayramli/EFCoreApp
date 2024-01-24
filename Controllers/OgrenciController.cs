@@ -32,4 +32,22 @@ public class OgrenciController : Controller
         await _context.SaveChangesAsync();
         return RedirectToAction("Index");
     }
+
+
+    public async Task<IActionResult> Edit(int? id)
+    {
+        if(id == null)
+        {return NotFound();}
+
+        var tlb = await _context.Ogrenciler.FindAsync(id);
+        //var tlbr = await _context.Ogrenciler.FirstOrDefaultAsync(t => t.OgrenciId == id);
+
+        if(tlb == null)
+        {return NotFound();}
+
+        return View(tlb);
+    }
+
+
+
 }
