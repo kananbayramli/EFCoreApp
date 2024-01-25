@@ -12,6 +12,12 @@ public class Ogrenci{
     public string? OgrenciAd { get; set; }
     [Display(Name ="Soyad")]
     public string? OgrenciSoyad { get; set; }
+
+    public string? AdSoyad { 
+    get{
+            return this.OgrenciAd + " " + this.OgrenciSoyad;
+        }}
+
     public string? Email { get; set; }
     public string? Telefon { get; set; }
 }
