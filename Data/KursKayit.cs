@@ -4,8 +4,9 @@ namespace EFCoreApp.Data;
 
 public class KursKayit{
     [Key]
+    [Display(Name ="Id")]
     public int KayitId { get; set; }
-    
+
     public int KursId { get; set; }
     public Kurs Kurs { get; set; } = null!;
 

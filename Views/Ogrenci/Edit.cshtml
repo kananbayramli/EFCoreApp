@@ -3,27 +3,49 @@
 <h2>Edit</h2>
 <hr>
 
+<div class="row">
 
-<form asp-controller="Ogrenci" asp-action="Edit" method="post">
-    <input type="hidden" asp-for="OgrenciId">
-    <div class="mb-3">
-        <label asp-for="OgrenciAd" class="form-label">Telebe Adi</label>
-        <input asp-for="OgrenciAd" class="form-control">
-    </div>
+<div class="col-8">
+    <form asp-controller="Ogrenci" asp-action="Edit" method="post">
+        <input type="hidden" asp-for="OgrenciId">
+        <div class="mb-3">
+            <label asp-for="OgrenciAd" class="form-label">Telebe Adi</label>
+            <input asp-for="OgrenciAd" class="form-control">
+        </div>
+    
+        <div class="mb-3">
+            <label asp-for="OgrenciSoyad" class="form-label">Telebe Soyad</label>
+            <input asp-for="OgrenciSoyad" class="form-control">
+        </div>
+    
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" class="form-control">
+        </div>
+    
+        <div class="mb-3">
+            <label asp-for="Telefon" class="form-label">Telefon</label>
+            <input asp-for="Telefon" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-secondary">Qeyd Et</button>
+    </form>
+</div>
 
-    <div class="mb-3">
-        <label asp-for="OgrenciSoyad" class="form-label">Telebe Soyad</label>
-        <input asp-for="OgrenciSoyad" class="form-control">
-    </div>
 
-    <div class="mb-3">
-        <label asp-for="Email" class="form-label">Email</label>
-        <input asp-for="Email" class="form-control">
-    </div>
+<div class="col-4">
+    <h4>Kurslar</h4>
+    <hr>
+    <ul>
+    @foreach(var item in @Model.KursKayitlari)
+    {
+            <li>@item.Kurs.Baslik</li>
+    }
+    </ul>
+</div>
 
-    <div class="mb-3">
-        <label asp-for="Telefon" class="form-label">Telefon</label>
-        <input asp-for="Telefon" class="form-control">
-    </div>
-    <button type="submit" class="btn btn-secondary">Qeyd Et</button>
-</form>
+</div>
+
+
+
+
+

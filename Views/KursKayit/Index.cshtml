@@ -1,12 +1,16 @@
 @model IEnumerable<KursKayit>
 
-<p class="h2">Kurs Qeydiyyatlari</p>
+<p class="h2">Kurs Qeydiyyatlari <br>
+    <a asp-controller="KursKayit" asp-action="Create" class="btn btn-success">Yeni Qeydiyyat</a>
+</p>
+
+
 
 <table class="table table-bordered">
     <thead>
         <tr>
             <th style="width: 170px;">@Html.DisplayNameFor(k => k.KayitId)</th>
-            <th>@Html.DisplayNameFor(k => k.Ogrenci.OgrenciId)</th>
+            <th>@Html.DisplayNameFor(k => k.Ogrenci.OgrenciAd)</th>
             <th>@Html.DisplayNameFor(k => k.Kurs.Baslik)</th>
             <th>Qeyd Tarixi</th>
             <th style="width: 170px;"></th> 
@@ -18,7 +22,7 @@
         {
             <tr>
                 <td>@Html.DisplayFor(modelitem => item.KayitId)</td>
-                <td>@Html.DisplayFor(modelitem => item.Ogrenci.OgrenciId)</td>
+                <td>@Html.DisplayFor(modelitem => item.Ogrenci.OgrenciAd)</td>
                 <td>@Html.DisplayFor(modelitem => item.Kurs.Baslik)</td>
                 <td>@Html.DisplayFor(modelitem => item.KayitTarihi)</td>
                 <td>

@@ -39,7 +39,11 @@ public class OgrenciController : Controller
         if(id == null)
         {return NotFound();}
 
-        var tlb = await _context.Ogrenciler.FindAsync(id);
+        var tlb = await _context
+                                .Ogrenciler
+                                .Include(t => t.KursKayitlari)
+                                .ThenInclude(t => t.Kurs)
+                                .FirstOrDefaultAsync(t => t.OgrenciId == id);
         //var tlbr = await _context.Ogrenciler.FirstOrDefaultAsync(t => t.OgrenciId == id);
 
         if(tlb == null)
