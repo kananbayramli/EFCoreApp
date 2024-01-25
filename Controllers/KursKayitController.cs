@@ -15,9 +15,10 @@ public class KursKayitController : Controller
     }
 
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var kursKayitlari = await _context.KursKayitlari.Include(o => o.Ogrenci).Include(k => k.Kurs).ToListAsync();
+        return View(kursKayitlari);
     }
 
 
