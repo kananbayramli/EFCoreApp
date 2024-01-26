@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EFCoreApp.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace EFCoreApp.Controllers;
@@ -18,13 +19,14 @@ public class KursController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var kurslar =await  _context.Kurslar.ToListAsync();
+        var kurslar =await  _context.Kurslar.Include(ogr => ogr.Ogretmen).ToListAsync();
         return View(kurslar);
     }
 
 
-    public IActionResult Create()
+    public async Task<IActionResult> Create()
     {
+        ViewBag.Ogretmenler = new SelectList(await _context.Ogretmenler.ToListAsync(), "OgretmenId", "AdSoyad");
         return View();
     }
 

@@ -12,6 +12,7 @@
                 <th style="width: 170px;">@Html.DisplayNameFor(o => o.OgretmenId)</th>
                 <th>@Html.DisplayNameFor(o => o.Ad)</th>
                 <th>@Html.DisplayNameFor(o => o.Soyad)</th>
+                <th>@Html.DisplayNameFor(o => o.BaslamaTarihi)</th>
                 <th style="width: 170px;"></th>
             </tr>
         </thead>
@@ -23,6 +24,7 @@
                 <td>@Html.DisplayFor(modelItem => item.OgretmenId)</td>
                 <td>@Html.DisplayFor(modelItem => item.Ad)</td>
                 <td>@Html.DisplayFor(modelItem => item.Soyad)</td>
+                <td>@Html.DisplayFor(modelItem => item.BaslamaTarihi)</td>
                 <td>
                     <a asp-controller="Ogretmen" asp-action="Edit" asp-route-id="@item.OgretmenId" class="btn btn-sm btn-success">Edit</a>
                     <a asp-action="Delete" asp-route-id="@item.OgretmenId" class="btn btn-sm btn-danger">Delete</a>
