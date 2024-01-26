@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EFCoreApp.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using EFCoreApp.Models;
 
 
 namespace EFCoreApp.Controllers;
@@ -49,26 +50,28 @@ public class KursController : Controller
 
         if(krs == null){ return NotFound();}
 
+        ViewBag.Ogretmenler = new SelectList(await _context.Ogretmenler.ToListAsync(), "OgretmenId", "AdSoyad");
+
         return View(krs);
     }
 
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, Kurs kurs)
+    public async Task<IActionResult> Edit(int id, KursViewModel model)
     {
-        if(id != kurs.KursId){return NotFound();}
+        if(id != model.KursId){return NotFound();}
 
         if(ModelState.IsValid)
         {
             try
             {
-                _context.Update(kurs);
+                _context.Update(new Kurs() {KursId = model.KursId, Baslik = model.Baslik, OgretmenId = model.OgretmenId});
                 await _context.SaveChangesAsync();
             }
             catch(DbUpdateConcurrencyException)
             {
-                if(!_context.Kurslar.Any(k => k.KursId == kurs.KursId))
+                if(!_context.Kurslar.Any(k => k.KursId == model.KursId))
                 {
                     return NotFound();
                 }
@@ -76,7 +79,8 @@ public class KursController : Controller
             }
             return RedirectToAction("Index");
         }
-        return View(kurs);
+
+        return View(model);
     }
 
 
