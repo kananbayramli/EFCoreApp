@@ -39,4 +39,62 @@ public class OgretmenController : Controller
         return NotFound();
     }
 
+
+    public async Task<IActionResult> Edit(int? id)
+    {
+        if(id == null){return NotFound();}
+
+        var ogr = await _context
+                                .Ogretmenler
+                                .FirstOrDefaultAsync(t => t.OgretmenId == id);
+        if(ogr == null){return NotFound();}
+
+        return View(ogr);
+    }
+
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int id, Ogretmen model)
+    {
+        if(id != model.OgretmenId){ return NotFound();}
+
+        if(ModelState.IsValid)
+        {
+            try
+            {
+                _context.Update(model);
+                await _context.SaveChangesAsync();
+            }
+            catch(DbUpdateConcurrencyException)
+            {
+                if(!_context.Ogretmenler.Any(t => t.OgretmenId == model.OgretmenId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction("Index");
+        }
+        return View(model);
+    }
+
+
+
+
+
+
+    public async Task<IActionResult> Delete(int? id)
+    {
+        if(id == null){return NotFound();}
+
+        var ogr = await _context.Ogretmenler.FindAsync(id);
+
+        if(ogr == null){return NotFound();}
+
+        return View(ogr);
+    }
 }

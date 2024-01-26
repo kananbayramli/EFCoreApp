@@ -13,5 +13,6 @@ public class KursKayit{
     public int OgrenciId { get; set; }
     public Ogrenci Ogrenci {get; set;} = null!;
 
+
     public DateTime KayitTarihi { get; set; }
 }

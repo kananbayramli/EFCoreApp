@@ -1,0 +1,42 @@
+@model Ogretmen
+
+<h2>Edit</h2>
+<hr>
+
+<div class="row">
+
+<div class="col-8">
+    <form asp-controller="Ogretmen" asp-action="Edit" method="post">
+        <input type="hidden" asp-for="OgretmenId">
+        <div class="mb-3">
+            <label asp-for="Ad" class="form-label">Muellim Adi</label>
+            <input asp-for="Ad" class="form-control">
+        </div>
+    
+        <div class="mb-3">
+            <label asp-for="Soyad" class="form-label">Muellim Soyad</label>
+            <input asp-for="Soyad" class="form-control">
+        </div>
+    
+        <div class="mb-3">
+            <label asp-for="Email" class="form-label">Email</label>
+            <input asp-for="Email" class="form-control">
+        </div>
+    
+        <div class="mb-3">
+            <label asp-for="Telefon" class="form-label">Telefon</label>
+            <input asp-for="Telefon" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-secondary">Qeyd Et</button>
+    </form>
+</div>
+
+
+
+
+</div>
+
+
+
+
+
